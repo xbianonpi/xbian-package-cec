@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if [ $1 == "remove" ]; then
+	
+	if [ $(pgrep xbmc.bin | wc -l) -eq 1 ]; then
+		/etc/init.d/xbmc stop 1>/dev/null 2>/dev/null >/dev/null
+		touch /tmp/startxbmc
+	fi
+	
+	if [ -f /usr/local/bin/cec-client ]; then
+		rm /usr/local/bin/cec-client;
+	fi
+	
+	if [ -d /usr/local/include/libcec ]; then
+		rm -r /usr/local/include/libcec;
+	fi	
+	
+	if [ -f /usr/local/lib/libcec.a ]; then
+		rm /usr/local/lib/libcec.a;
+	fi
+
+	if [ -f /usr/local/lib/libcec.la ]; then
+		rm /usr/local/lib/libcec.la;
+	fi	
+
+	if [ -f /usr/local/lib/libcec.so ]; then
+		rm /usr/local/lib/libcec.so;
+	fi
+
+	if [ -f /usr/local/lib/libcec.so.2 ]; then
+		rm /usr/local/lib/libcec.so.2;
+	fi
+
+	if [ -f /usr/local/lib/libcec.so.2.0.1 ]; then
+		rm /usr/local/lib/libcec.so.2.0.1;
+	fi
+
+	if [ -f /usr/local/lib/pkgconfig/libcec.pc ]; then
+		rm /usr/local/lib/pkgconfig/libcec.pc;
+	fi
+	
+fi

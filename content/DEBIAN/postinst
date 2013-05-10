@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ $1 == "configure" ]]; then
+
+	ldconfig 1>/dev/null 2>/dev/null >/dev/null
+
+	if [ -f "/usr/local/lib/libcec.so.2" ]; then
+		rm /usr/local/lib/libcec.so.2
+	fi
+	ln -s /usr/local/lib/libcec.so.2.0.1 /usr/local/lib/libcec.so.2
+
+	if [ -f "/usr/local/lib/libcec.so" ]; then
+		rm /usr/local/lib/libcec.so
+	fi
+	ln -s /usr/local/lib/libcec.so.2.0.1 /usr/local/lib/libcec.so
+
+	ldconfig 1>/dev/null 2>/dev/null >/dev/null
+
+	if [ -f "/tmp/startxbmc" ]; then
+		/etc/init.d/xbmc start 1>/dev/null 2>/dev/null >/dev/null
+		rm /tmp/startxbmc
+	fi
+
+fi

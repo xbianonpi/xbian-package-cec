@@ -1,0 +1,11 @@
+5714991a0eea1fc3fb45b5a1d8b67f9c  opt/cec/usr/local/bin/cec-client
+9eb30ce9a5826496c761e5b0d2c6be52  opt/cec/usr/local/include/libcec/cec.h
+ef9c0ca53d899f3ef8e265ead45b5ec3  opt/cec/usr/local/include/libcec/cecloader.h
+f8456c67cb9254de9bd5ebf0d8cd7d4d  opt/cec/usr/local/include/libcec/cectypes.h
+8246416a7a27858cd3317c07abf9b764  opt/cec/usr/local/include/libcec/cecc.h
+f0ac89761eb9d29d598ee88c46ed775d  opt/cec/usr/local/lib/libcec.a
+4ae5ca7f7b0631c3e889e939a9157866  opt/cec/usr/local/lib/libcec.la
+1a0aa23427025e8436485f76ebc249e5  opt/cec/usr/local/lib/libcec.so
+1a0aa23427025e8436485f76ebc249e5  opt/cec/usr/local/lib/libcec.so.2
+1a0aa23427025e8436485f76ebc249e5  opt/cec/usr/local/lib/libcec.so.2.0.1
+6bb44a021aa255eb4dfd6d9449bd3b13  opt/cec/usr/local/lib/pkgconfig/libcec.pc
