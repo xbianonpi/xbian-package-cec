@@ -7,20 +7,20 @@ if [ $1 == "install" -o $1 == "upgrade" ]; then
 		touch /tmp/startxbmc
 	fi
 
-	if [ ! -d "/usr/local/bin" ]; then
-		mkdir -p "/usr/local/bin";
+	if [ ! -d "/opt/cec/usr/local/bin" ]; then
+		mkdir -p "/opt/cec/usr/local/bin";
 	fi
 
-	if [ ! -d "/usr/local/include/libcec" ]; then
-		mkdir -p "/usr/local/include/libcec";
+	if [ ! -d "/opt/cec/usr/local/include/libcec" ]; then
+		mkdir -p "/opt/cec/usr/local/include/libcec";
 	fi
 
-	if [ ! -d "/usr/local/lib" ]; then
-		mkdir -p "/usr/local/lib";
+	if [ ! -d "/opt/cec/usr/local/lib" ]; then
+		mkdir -p "/opt/cec/usr/local/lib";
 	fi
 
-	if [ ! -d "/usr/local/lib/pkgconfig" ]; then
-		mkdir -p "/usr/local/lib/pkgconfig";
+	if [ ! -d "/opt/cec/usr/local/lib/pkgconfig" ]; then
+		mkdir -p "/opt/cec/usr/local/lib/pkgconfig";
 	fi
 
 fi
