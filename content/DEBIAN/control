@@ -6,6 +6,6 @@ Priority: optional
 Architecture: armhf
 Depends: xbian-package-xbmc (>=2.3), udev (>=175-7.1), liblockdev1 (>=1.0.3-1.5)
 Breaks: xbian-package-xbmc (<< 2.3)
-Installed-Size: 9760
 Maintainer: Koenkk <development@xbian.org>
 Description: cec for XBian.
+Installed-Size: 11176
