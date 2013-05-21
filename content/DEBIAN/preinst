@@ -2,25 +2,9 @@
 
 if [ $1 == "install" -o $1 == "upgrade" ]; then
 
-	if [ $(pgrep xbmc.bin | wc -l) -eq 1 ]; then
-		/etc/init.d/xbmc stop 1>/dev/null 2>/dev/null >/dev/null
+	if pgrep xbmc.bin > /dev/null; then 
+		pkill xbmc.bin
 		touch /tmp/startxbmc
-	fi
-
-	if [ ! -d "/opt/cec/usr/local/bin" ]; then
-		mkdir -p "/opt/cec/usr/local/bin";
-	fi
-
-	if [ ! -d "/opt/cec/usr/local/include/libcec" ]; then
-		mkdir -p "/opt/cec/usr/local/include/libcec";
-	fi
-
-	if [ ! -d "/opt/cec/usr/local/lib" ]; then
-		mkdir -p "/opt/cec/usr/local/lib";
-	fi
-
-	if [ ! -d "/opt/cec/usr/local/lib/pkgconfig" ]; then
-		mkdir -p "/opt/cec/usr/local/lib/pkgconfig";
 	fi
 
 fi

@@ -2,11 +2,8 @@
 
 if [ $1 == "remove" ]; then
 
-	ldconfig 1>/dev/null 2>/dev/null >/dev/null
+	ldconfig > /dev/null 2>&1
 
-	if [ -f "/tmp/startxbmc" ]; then
-		/etc/init.d/xbmc start 1>/dev/null 2>/dev/null >/dev/null
-		rm /tmp/startxbmc
-	fi
+	[ -e /tmp/startxbmc ] && rm /tmp/startxbmc
 
 fi
