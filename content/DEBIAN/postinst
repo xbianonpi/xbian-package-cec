@@ -4,10 +4,6 @@ if [ $1 == "configure" ]; then
 
 	ldconfig > /dev/null 2>&1
 
-	if [ -f "/tmp/startxbmc" ]; then
-		[ -e /etc/init.d/xbmc ] && service xbmc start > /dev/null 2>&1
-		[ -e /etc/init/xbmc.conf ] && start xbmc
-		rm /tmp/startxbmc
-	fi
+	dpkg-trigger --no-await trigger-xbian-package-xbmc
 
 fi
