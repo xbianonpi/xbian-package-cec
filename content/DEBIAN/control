@@ -9,4 +9,3 @@ Replaces: xbian-update (<< 1.0-1)
 Breaks: xbian-package-xbmc (<< 2.3)
 Maintainer: Koenkk <development@xbian.org>
 Description: cec for XBian.
-Installed-Size: 11176
