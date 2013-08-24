@@ -1,10 +1,5 @@
 #!/bin/bash
 
 if [ $1 == "install" -o $1 == "upgrade" ]; then
-
-	if pgrep xbmc.bin > /dev/null; then 
-		pkill xbmc.bin
-		touch /tmp/startxbmc
-	fi
-
+    :
 fi

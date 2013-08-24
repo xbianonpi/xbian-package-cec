@@ -4,6 +4,4 @@ if [ $1 == "configure" ]; then
 
 	ldconfig > /dev/null 2>&1
 
-	dpkg-trigger --no-await trigger-xbian-package-xbmc
-
 fi

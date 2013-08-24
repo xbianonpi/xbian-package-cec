@@ -2,9 +2,7 @@
 
 if [ $1 == "remove" ]; then
 	
-	if [ $(pgrep xbmc.bin | wc -l) -eq 1 ]; then
-		/etc/init.d/xbmc stop 1>/dev/null 2>/dev/null >/dev/null
-		touch /tmp/startxbmc
-	fi
+	pgrep xbmc.bin >&/dev/null && touch /tmp/startxbmc
+	stop -q xbmc
 	
 fi
