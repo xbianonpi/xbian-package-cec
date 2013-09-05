@@ -17,7 +17,7 @@ old_library='libcec.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -lbcm_host -llockdev -L/opt/vc/lib/libbcm_host.so -lvcos -lvchiq_arm -ludev -lrt -ldl -lpthread'
+dependency_libs=' -lbcm_host /opt/libcec/project/RPi/deps/lib/liblockdev.la -L/opt/libcec/project/RPi/deps/lib -L/opt/libcec/project/RPi/firmware/hardfp/opt/vc/lib -lvcos -lvchiq_arm -lrt -ldl -lpthread /home/dc4/tools/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/arm-bcm2708hardfp-linux-gnueabi/lib/libstdc++.la'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
