@@ -1,10 +1,10 @@
 Origin: XBian
 Package: xbian-package-cec
-Version: 1.1-0.3
+Version: 1.1-0.4
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: xbian-package-xbmc (>=2.3), udev (>=175-7.1), liblockdev1 (>=1.0.3-1.5)
+Depends: udev (>=175-7.1), liblockdev1 (>=1.0.3-1.5)
 Replaces: xbian-update (<< 1.0-1)
 Breaks: xbian-package-xbmc (<< 2.3)
 Provides: libcec1
