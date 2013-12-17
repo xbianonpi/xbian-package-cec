@@ -1,6 +1,6 @@
 Origin: XBian
 Package: xbian-package-cec
-Version: 1.1-1
+Version: 1.1-2
 Section: utils
 Priority: optional
 Architecture: armhf
@@ -10,4 +10,4 @@ Breaks: xbian-package-xbmc (<< 2.3)
 Provides: libcec1
 Conflicts: libcec1
 Maintainer: Koenkk <development@xbian.org>
-Description: cec for XBian.
+Description: libcec 2.1.4 for XBian.
