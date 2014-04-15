@@ -7,6 +7,6 @@ Name: libcec
 Description: Pulse-Eight CEC adapter library
 URL: http://www.pulse-eight.com/
 Version: 2:1:0
-Requires: 
+Requires:  udev
 Libs: -L${libdir} -lcec
 Cflags: -I${includedir} -I${includedir}/libcec

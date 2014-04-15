@@ -1,6 +1,6 @@
 Origin: XBian
 Package: xbian-package-cec
-Version: 1.1-2
+Version: 1.1-4.2
 Section: utils
 Priority: optional
 Architecture: armhf
