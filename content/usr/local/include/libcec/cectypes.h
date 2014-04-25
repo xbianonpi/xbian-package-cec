@@ -295,17 +295,6 @@ namespace CEC {
 #define CEC_TDA995x_VIRTUAL_COM		"CuBox"
 
 /*!
- * the path to use for the i.MX CEC wire
- */
-#define CEC_IMX_PATH		"/dev/mxc_hdmi_cec"
-
-/*!
- * the name of the virtual COM port to use for the i.MX CEC wire
- */
-#define CEC_IMX_VIRTUAL_COM		"i.MX"
-
-
-/*!
  * Mimimum client version
  */
 #define CEC_MIN_LIB_VERSION          2
@@ -869,8 +858,7 @@ typedef enum cec_adapter_type
   ADAPTERTYPE_P8_EXTERNAL      = 0x1,
   ADAPTERTYPE_P8_DAUGHTERBOARD = 0x2,
   ADAPTERTYPE_RPI              = 0x100,
-  ADAPTERTYPE_TDA995x          = 0x200,
-  ADAPTERTYPE_IMX	       = 0x300,
+  ADAPTERTYPE_TDA995x          = 0x200
 } cec_adapter_type;
 
 typedef struct cec_menu_language
