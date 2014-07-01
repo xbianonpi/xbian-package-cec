@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $1 == "remove" ]; then
+
+	ldconfig > /dev/null 2>&1
+
+fi
+
+exit 0

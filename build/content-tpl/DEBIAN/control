@@ -1,0 +1,13 @@
+Origin: XBian
+Package: __PKGNAME__
+Version: __VERSION__
+Section: utils
+Priority: optional
+Architecture: armhf
+Depends: udev (>=175-7.1)
+Replaces: xbian-update (<< 1.0-1)
+Breaks: xbian-package-xbmc (<< 2.3)
+Provides: libcec2, libcec-dev
+Conflicts: libcec2, libcec-dev
+Maintainer: Koenkk <development@xbian.org>
+Description: libcec 2.1.4 for XBian (__ARCHBRANCH__)

@@ -1,0 +1,2 @@
+config_source_configure=./configure --enable-rpi --prefix=/usr --with-rpi-include-path=/opt/vc/include/ --with-rpi-lib-path=/opt/vc/lib/
+config_build_env=schroot -c armhfwheezy -p --
