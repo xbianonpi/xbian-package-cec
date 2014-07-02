@@ -6,3 +6,5 @@ if [ $1 == "remove" ]; then
 	stop -q xbmc
 	
 fi
+
+exit 0

@@ -1,13 +1,14 @@
 Origin: XBian
-Package: xbian-package-cec
-Version: 1.1-4.2
+Package: xbian-package-cec-6q
+Version: 2.4.1-2-53b3b5c4
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: udev (>=175-7.1), liblockdev1 (>=1.0.3-1.5), makedev, inetutils-ping
+Depends: udev, liblockdev1, makedev
 Replaces: xbian-update (<< 1.0-1)
 Breaks: xbian-package-xbmc (<< 2.3)
-Provides: libcec1
-Conflicts: libcec1
+Provides: libcec2, libcec-dev
+Conflicts: libcec2, libcec-dev
 Maintainer: Koenkk <development@xbian.org>
-Description: libcec 2.1.4 for XBian.
+Description: libcec 2.1.4 for XBian (imx6/wheezy)
+  (at commit src a560d244101d963b2f3e8a25a71aafb9e36ffb53, commit xbian repo 9aaffd74269c04a80d3156088967f5d8e10d5309)
