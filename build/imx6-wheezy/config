@@ -1,0 +1,3 @@
+config_source_configure=./configure --enable-imx6 --prefix=/usr
+config_build_env=schroot -c armhfwheezy -p --
+config_deb_pkgname=xbian-package-cec-6q
