@@ -262,7 +262,7 @@ index 0000000..5875d76
 +  if (m_bInitialised)
 +  {
 +    m_bInitialised = false;
-+    dummyMsg();
++    //dummyMsg();
 +
 +    if (m_dev->Ioctl(HDMICEC_IOC_STOPDEVICE, NULL) != 0)
 +    {
@@ -457,7 +457,7 @@ index 0000000..5875d76
 +
 +  while (!IsStopped())
 +  {
-+    if (IsInitialised() && (ret = m_dev->Read((char *)&event, sizeof(event))) > 0)
++    if (IsInitialised() && (ret = m_dev->Read((char *)&event, sizeof(event), 1000)) > 0)
 +    {
 +
 +      initiator = cec_logical_address(event.msg[0] >> 4);
@@ -629,7 +629,7 @@ index 0000000..16dd713
 +    bool IsInitialised(void) { return m_bInitialised; };
 +    bool RegisterLogicalAddress(const cec_logical_address address);
 +    bool UnregisterLogicalAddress(void);
-+    void dummyMsg(void) { cec_command cmd; bool r; cec_command::Format(cmd, (cec_logical_address)0xf, (cec_logical_address)0xf, (cec_opcode)0xFD); Write(cmd, r, 1, false); }
++    void dummyMsg(void) { cec_command cmd; bool r; cec_command::Format(cmd, (cec_logical_address)0x0, (cec_logical_address)0xf, (cec_opcode)0xFD); Write(cmd, r, 1, false); }
 +
 +    std::string                 m_strError; /**< current error message */
 +
