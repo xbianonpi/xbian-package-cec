@@ -1,6 +1,6 @@
 Origin: XBian
 Package: xbian-package-cec-6q
-Version: 2.4.1-2-1405730156
+Version: 2.4.1-2-1405847216
 Section: utils
 Priority: optional
 Architecture: armhf
@@ -11,4 +11,4 @@ Provides: libcec2, libcec-dev
 Conflicts: libcec2, libcec-dev
 Maintainer: Koenkk <development@xbian.org>
 Description: libcec 2.1.4 for XBian (imx6/master)
-  (at commit src a560d244101d963b2f3e8a25a71aafb9e36ffb53, commit xbian repo dbd779ad34a2a2cbaf51cef19442730d1cf25796)
+  (at commit src a560d244101d963b2f3e8a25a71aafb9e36ffb53, commit xbian repo 24971e6beaf6985ea0fed66b977acaa8b1fbf36a)
