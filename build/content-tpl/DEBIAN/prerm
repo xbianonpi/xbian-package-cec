@@ -1,10 +1,8 @@
 #!/bin/bash
 
 if [ $1 == "remove" ]; then
-	
-	pgrep xbmc.bin >&/dev/null && touch /tmp/startxbmc
+	{ pgrep xbmc.bin >/dev/null || pgrep kodi.bin >/dev/null; } && touch /tmp/startxbmc
 	stop -q xbmc
-	
 fi
 
 exit 0
