@@ -58,12 +58,12 @@ index 9f86253..52c13e5 100644
   */
  #define CEC_MIN_LIB_VERSION          2
 @@ -858,7 +869,8 @@ typedef enum cec_adapter_type
-   ADAPTERTYPE_P8_EXTERNAL      = 0x1,
    ADAPTERTYPE_P8_DAUGHTERBOARD = 0x2,
    ADAPTERTYPE_RPI              = 0x100,
--  ADAPTERTYPE_TDA995x          = 0x200
-+  ADAPTERTYPE_TDA995x          = 0x200,
-+  ADAPTERTYPE_IMX	       = 0x400,
+   ADAPTERTYPE_TDA995x          = 0x200,
+-  ADAPTERTYPE_EXYNOS           = 0x300
++  ADAPTERTYPE_EXYNOS           = 0x300,
++  ADAPTERTYPE_IMX              = 0x400
  } cec_adapter_type;
  
  typedef struct cec_menu_language
@@ -148,8 +148,8 @@ index 42cdd0b..576589f 100644
    return new CUSBCECAdapterCommunication(m_lib->m_cec, strPort, iBaudRate);
  #endif
  
--#if !defined(HAVE_RPI_API) && !defined(HAVE_P8_USB) && !defined(HAVE_TDA995X_API)
-+#if !defined(HAVE_RPI_API) && !defined(HAVE_P8_USB) && !defined(HAVE_TDA995X_API) && !defined(HAVE_IMX_API)
+-#if !defined(HAVE_RPI_API) && !defined(HAVE_P8_USB) && !defined(HAVE_TDA995X_API) && !defined(HAVE_EXYNOS_API)
++#if !defined(HAVE_RPI_API) && !defined(HAVE_P8_USB) && !defined(HAVE_TDA995X_API) && !defined(HAVE_EXYNOS_API) && !defined(HAVE_IMX_API)
    return NULL;
  #endif
  }
