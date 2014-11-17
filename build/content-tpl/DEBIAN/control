@@ -4,7 +4,7 @@ Version: __VERSION__
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: udev, liblockdev1, makedev
+Depends: liblockdev1, libudev0 (>= 0.140), udev, liblockdev1, makedev, xbian-package-firmware (>= 1.8.0) | firmware-imx
 Replaces: xbian-update (<< 1.0-1)
 Breaks: xbian-package-xbmc (<< 2.3)
 Provides: libcec2, libcec-dev
