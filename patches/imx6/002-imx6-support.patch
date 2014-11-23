@@ -1,8 +1,8 @@
 diff --git a/configure.ac b/configure.ac
-index 510d851..923d7e5 100644
+index fb92035..dc6b171 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -93,6 +93,14 @@ if test "x$use_rpi" != "xno"; then
+@@ -100,6 +100,14 @@ if test "x$use_rpi" != "xno"; then
    esac
  fi
  
@@ -17,9 +17,9 @@ index 510d851..923d7e5 100644
  ## add the top dir and include to the include path, so we can include config.h and cec.h
  CPPFLAGS="$CPPFLAGS -I\$(abs_top_srcdir)/src -I\$(abs_top_srcdir)/include"
  
-@@ -270,6 +278,17 @@ else
-   features="$features\n  TDA995x support :\t\t\tno"
+@@ -309,6 +317,17 @@ else
  fi
+ 
  
 +## mark i.MX6 support as available
 +if test "x$use_imx6" != "xno"; then
@@ -36,11 +36,11 @@ index 510d851..923d7e5 100644
  AC_CHECK_HEADER(algorithm,,AC_MSG_ERROR($msg_required_header_missing))
  AC_CHECK_HEADER(ctype.h,,AC_MSG_ERROR($msg_required_header_missing))
 diff --git a/include/cectypes.h b/include/cectypes.h
-index 9f86253..52c13e5 100644
+index 0a90d0e..a1050e0 100644
 --- a/include/cectypes.h
 +++ b/include/cectypes.h
-@@ -295,6 +295,17 @@ namespace CEC {
- #define CEC_TDA995x_VIRTUAL_COM		"CuBox"
+@@ -307,6 +307,17 @@ namespace CEC {
+ #define CEC_EXYNOS_VIRTUAL_COM		"Exynos"
  
  /*!
 + * the path to use for the i.MX CEC wire
@@ -57,7 +57,7 @@ index 9f86253..52c13e5 100644
   * Mimimum client version
   */
  #define CEC_MIN_LIB_VERSION          2
-@@ -858,7 +869,8 @@ typedef enum cec_adapter_type
+@@ -888,7 +899,8 @@ typedef enum cec_adapter_type
    ADAPTERTYPE_P8_DAUGHTERBOARD = 0x2,
    ADAPTERTYPE_RPI              = 0x100,
    ADAPTERTYPE_TDA995x          = 0x200,
@@ -68,10 +68,10 @@ index 9f86253..52c13e5 100644
  
  typedef struct cec_menu_language
 diff --git a/src/lib/CECTypeUtils.h b/src/lib/CECTypeUtils.h
-index dc4e5f1..1cf7ef1 100644
+index 64f5c21..800c4f0 100644
 --- a/src/lib/CECTypeUtils.h
 +++ b/src/lib/CECTypeUtils.h
-@@ -858,6 +858,8 @@ namespace CEC
+@@ -877,6 +877,8 @@ namespace CEC
          return "Raspberry Pi";
        case ADAPTERTYPE_TDA995x:
          return "TDA995x";
@@ -81,11 +81,11 @@ index dc4e5f1..1cf7ef1 100644
          return "unknown";
        }
 diff --git a/src/lib/Makefile.am b/src/lib/Makefile.am
-index 9117d8e..6788303 100644
+index bd9598f..036404b 100644
 --- a/src/lib/Makefile.am
 +++ b/src/lib/Makefile.am
-@@ -59,5 +59,10 @@ libcec_la_SOURCES += adapter/TDA995x/TDA995xCECAdapterDetection.cpp \
-                      adapter/TDA995x/TDA995xCECAdapterCommunication.cpp
+@@ -57,6 +57,12 @@ libcec_la_SOURCES += adapter/RPi/RPiCECAdapterDetection.cpp \
+                      adapter/RPi/RPiCECAdapterMessageQueue.cpp
  endif
  
 +## i.MX6 support
@@ -93,14 +93,16 @@ index 9117d8e..6788303 100644
 +libcec_la_SOURCES += adapter/IMX/IMXCECAdapterDetection.cpp \
 +                     adapter/IMX/IMXCECAdapterCommunication.cpp
 +endif
- 
- libcec_la_LDFLAGS = @LIBS_LIBCEC@ -version-info @VERSION@
++
+ ## CuBox (NXP) support
+ if USE_TDA995X_API
+ libcec_la_SOURCES += adapter/TDA995x/TDA995xCECAdapterDetection.cpp \
 diff --git a/src/lib/adapter/AdapterFactory.cpp b/src/lib/adapter/AdapterFactory.cpp
-index 42cdd0b..576589f 100644
+index d585154..e1bfff4 100644
 --- a/src/lib/adapter/AdapterFactory.cpp
 +++ b/src/lib/adapter/AdapterFactory.cpp
-@@ -52,6 +52,11 @@
- #include "TDA995x/TDA995xCECAdapterCommunication.h"
+@@ -57,6 +57,11 @@
+ #include "Exynos/ExynosCECAdapterCommunication.h"
  #endif
  
 +#if defined(HAVE_IMX_API)
@@ -111,9 +113,9 @@ index 42cdd0b..576589f 100644
  using namespace std;
  using namespace CEC;
  
-@@ -109,7 +114,22 @@ int8_t CAdapterFactory::DetectAdapters(cec_adapter_descriptor *deviceList, uint8
-   }
+@@ -127,7 +132,22 @@ int8_t CAdapterFactory::DetectAdapters(cec_adapter_descriptor *deviceList, uint8
  #endif
+ 
  
 -#if !defined(HAVE_RPI_API) && !defined(HAVE_P8_USB) && !defined(HAVE_TDA995X_API)
 +
@@ -135,7 +137,7 @@ index 42cdd0b..576589f 100644
  #error "libCEC doesn't have support for any type of adapter. please check your build system or configuration"
  #endif
  
-@@ -128,11 +148,16 @@ IAdapterCommunication *CAdapterFactory::GetInstance(const char *strPort, uint16_
+@@ -151,11 +171,16 @@ IAdapterCommunication *CAdapterFactory::GetInstance(const char *strPort, uint16_
      return new CRPiCECAdapterCommunication(m_lib->m_cec);
  #endif
  
@@ -155,10 +157,10 @@ index 42cdd0b..576589f 100644
  }
 diff --git a/src/lib/adapter/IMX/IMXCECAdapterCommunication.cpp b/src/lib/adapter/IMX/IMXCECAdapterCommunication.cpp
 new file mode 100644
-index 0000000..5875d76
+index 0000000..f1cb033
 --- /dev/null
 +++ b/src/lib/adapter/IMX/IMXCECAdapterCommunication.cpp
-@@ -0,0 +1,359 @@
+@@ -0,0 +1,356 @@
 +/*
 + * This file is part of the libCEC(R) library.
 + *
@@ -216,11 +218,11 @@ index 0000000..5875d76
 +
 +CIMXCECAdapterCommunication::CIMXCECAdapterCommunication(IAdapterCommunicationCallback *callback) :
 +    IAdapterCommunication(callback)
-+{ 
++{
 +  CLockObject lock(m_mutex);
 +
 +  m_iNextMessage = 0;
-+  m_logicalAddress = CECDEVICE_UNKNOWN; 
++  m_logicalAddress = CECDEVICE_UNKNOWN;
 +  m_bLogicalAddressRegistered = false;
 +  m_bInitialised = false;
 +  m_dev = new CCDevSocket(CEC_IMX_PATH);
@@ -363,6 +365,7 @@ index 0000000..5875d76
 +uint16_t CIMXCECAdapterCommunication::GetPhysicalAddress(void)
 +{
 +  uint8_t phy_addr[4];
++  uint16_t pa_tmp;
 +
 +  if (m_dev->Ioctl(HDMICEC_IOC_GETPHYADDRESS, &phy_addr) != 0)
 +  {
@@ -370,7 +373,9 @@ index 0000000..5875d76
 +    return CEC_INVALID_PHYSICAL_ADDRESS; 
 +  }
 +
-+  m_physicalAddress = ((phy_addr[0] << 4 | phy_addr[1]) << 8) | (phy_addr[2] << 4 | phy_addr[3]);
++  if ((pa_tmp = ((phy_addr[0] << 4 | phy_addr[1]) << 8) | (phy_addr[2] << 4 | phy_addr[3])))
++    m_physicalAddress = pa_tmp;
++
 +  return m_physicalAddress;
 +}
 +
@@ -399,28 +404,26 @@ index 0000000..5875d76
 +      return true;
 +  }
 +
-+  if (m_dev->Ioctl(HDMICEC_IOC_SETLOGICALADDRESS, (void *)CECDEVICE_BROADCAST) != 0)
-+  {
-+    LIB_CEC->AddLog(CEC_LOG_ERROR, "%s: HDMICEC_IOC_SETLOGICALADDRESS failed !", __func__);
-+    return false;
-+  }
-+
 +#ifdef CEC_DEBUGGING
 +  LIB_CEC->AddLog(CEC_LOG_DEBUG, "%s - releasing previous logical address", __func__);
 +#endif
-+  m_bLogicalAddressRegistered = false;
-+  return true;
++  return RegisterLogicalAddress(CECDEVICE_BROADCAST);
 +}
 +
 +bool CIMXCECAdapterCommunication::RegisterLogicalAddress(const cec_logical_address address)
 +{
 +  {
 +    CLockObject lock(m_mutex);
-+    if (m_logicalAddress == address && m_bLogicalAddressRegistered)
++    if ((m_logicalAddress == address && m_bLogicalAddressRegistered) ||
++        (m_logicalAddress == address && address == CECDEVICE_BROADCAST))
 +    {
 +      return true;
 +    }
 +  }
++
++#ifdef CEC_DEBUGGING
++  LIB_CEC->AddLog(CEC_LOG_DEBUG, "%s: %x to %x", __func__, m_logicalAddress, address);
++#endif
 +
 +  if (m_dev->Ioctl(HDMICEC_IOC_SETLOGICALADDRESS, (void *)address) != 0)
 +  {
@@ -429,10 +432,6 @@ index 0000000..5875d76
 +  }
 +
 +  CLockObject lock(m_mutex);
-+
-+#ifdef CEC_DEBUGGING
-+  LIB_CEC->AddLog(CEC_LOG_DEBUG, "%s: %x to %x", __func__, m_logicalAddress, address);
-+#endif
 +
 +  m_logicalAddress = address;
 +  m_bLogicalAddressRegistered = (address != CECDEVICE_BROADCAST) ? true : false;
@@ -520,7 +519,7 @@ index 0000000..5875d76
 +#endif	// HAVE_IMX_API
 diff --git a/src/lib/adapter/IMX/IMXCECAdapterCommunication.h b/src/lib/adapter/IMX/IMXCECAdapterCommunication.h
 new file mode 100644
-index 0000000..16dd713
+index 0000000..b9f370f
 --- /dev/null
 +++ b/src/lib/adapter/IMX/IMXCECAdapterCommunication.h
 @@ -0,0 +1,126 @@
@@ -565,8 +564,8 @@ index 0000000..16dd713
 +#define IMX_ADAPTER_PID 0x1001
 +
 +typedef struct hdmi_cec_event{
-+  int event_type;
-+  int msg_len;
++  uint8_t event_type;
++  uint8_t msg_len;
 +  unsigned char msg[MAX_MESSAGE_LEN];
 +}hdmi_cec_event;
 +
