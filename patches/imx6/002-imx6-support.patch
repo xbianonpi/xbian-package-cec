@@ -1,3 +1,9 @@
+commit f54c6bd53b26e7a074c59a507be7021ec6ab534c
+Author: Matus Kral <matuskral@me.com>
+Date:   Tue Nov 25 18:16:44 2014 +0100
+
+    imx6 support
+
 diff --git a/configure.ac b/configure.ac
 index fb92035..dc6b171 100644
 --- a/configure.ac
