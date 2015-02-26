@@ -4,10 +4,8 @@ Version: __VERSION__
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev, xbian-package-firmware (>= 1.8.0) | firmware-imx
-Replaces: xbian-update (<< 1.0-1)
-Breaks: xbian-package-xbmc (<< 2.3)
-Provides: libcec2, libcec-dev
-Conflicts: libcec2, libcec-dev
-Maintainer: Koenkk <development@xbian.org>
-Description: libcec 2.1.4 for XBian (__ARCHBRANCH__)
+Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev
+Provides: libcec-dev, xbian-package-cec-6q, xbian-package-cec
+Conflicts: libcec-dev, xbian-package-cec-6q, xbian-package-cec
+Description: libcec 2.2.0 for XBian (__ARCHBRANCH__)
+Maintainer: mk01 <development@xbian.org>

@@ -1,3 +1,3 @@
 config_source_configure=./configure --enable-imx6 --prefix=/usr
 config_build_env=schroot -c armhfjessie -p --
-config_deb_pkgname=xbian-package-cec-6q
+config_deb_pkgname=libcec2

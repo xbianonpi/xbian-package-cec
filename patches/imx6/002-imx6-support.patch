@@ -572,7 +572,7 @@ index 0000000..b9f370f
 +typedef struct hdmi_cec_event{
 +  uint8_t event_type;
 +  uint8_t msg_len;
-+  unsigned char msg[MAX_MESSAGE_LEN];
++  uint8_t msg[MAX_MESSAGE_LEN];
 +}hdmi_cec_event;
 +
 +
