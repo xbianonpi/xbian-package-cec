@@ -4,7 +4,7 @@ Version: __VERSION__
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev, linux-image-armmp (>=3.19.2+) | linux-image-3.14.33-armmp (>=3.0.0-1427236162) | xbian-package-kernel
+Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev
 Provides: libcec-dev, xbian-package-cec-6q, xbian-package-cec
 Conflicts: libcec-dev, xbian-package-cec-6q, xbian-package-cec
 Description: libcec 2.2.0 for XBian (__ARCHBRANCH__)
