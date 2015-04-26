@@ -1,10 +1,10 @@
 config_source_type=git
-config_source_addr=https://github.com/Pulse-Eight/libcec.git
+config_source_addr=https://github.com/xbianonpi/xbian-sources-libcec.git
 config_source_keep=yes
 config_source_reset=no
 config_source_refresh=yes
 config_source_prepare=./bootstrap
-config_source_branch=master
+config_source_branch=allmerged
 config_build_make=make
 config_deb_pkgname=xbian-package-cec
 config_build_targets=
