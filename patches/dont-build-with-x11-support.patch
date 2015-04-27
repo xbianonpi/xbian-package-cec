@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index fb92035..ee69842 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -215,7 +215,7 @@ case "${host}" in
+     fi
+     ## search for X11/xrandr
+     libs_tmp="$LIBS"
+-    use_x11_xrandr="yes"
++    use_x11_xrandr="no"
+     AC_CHECK_HEADER(X11/Xlib.h,,[use_x11_xrandr="no"])
+     AC_CHECK_HEADER(X11/Xatom.h,,[use_x11_xrandr="no"])
+     AC_CHECK_HEADER(X11/extensions/Xrandr.h,,[use_x11_xrandr="no"])
