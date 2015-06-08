@@ -4,8 +4,7 @@ Version: __VERSION__
 Section: utils
 Priority: optional
 Architecture: armhf
-Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev
-Provides: libcec-dev, xbian-package-cec-6q, xbian-package-cec
-Conflicts: libcec-dev, xbian-package-cec-6q, xbian-package-cec
+__PKGDEPS__
+__CTRLEXTRA__
 Description: libcec 2.2.0 for XBian (__ARCHBRANCH__)
 Maintainer: mk01 <development@xbian.org>
