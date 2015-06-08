@@ -1,0 +1,16 @@
+
+case $config_platform_branch in
+    *-cec3)
+        ;;
+    *)
+        return
+        ;;
+esac
+
+if [ -d $config_platform_install ]; then
+    cd $config_platform_install
+    git stash
+    git pull
+else
+    git clone $config_platform_source_addr $config_platform_install
+fi

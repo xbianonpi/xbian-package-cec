@@ -1,0 +1,6 @@
+
+# Correct libcec.pc if package was built with -DCMAKE_INSTALL_LIBDIR=/usr/lib
+[ -e ./usr/lib/pkgconfig/libcec.pc ] && sed -i 's/usr\/\/usr/usr/g' ./usr/lib/pkgconfig/libcec.pc || :
+
+# Correct libcec.pc if libplatform is not included
+[ -e ./usr/lib/pkgconfig/platform.pc ] || [ -e ./usr/lib/pkgconfig/libcec.pc ] && sed -i 's/platform//g' ./usr/lib/pkgconfig/libcec.pc || :

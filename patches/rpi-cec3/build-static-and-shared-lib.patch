@@ -1,0 +1,25 @@
+--- a/src/libcec/CMakeLists.txt
++++ b/src/libcec/CMakeLists.txt
+@@ -168,13 +168,17 @@ install(FILES ${PROJECT_SOURCE_DIR}/../../include/cec.h
+         DESTINATION include/libcec)
+ 
+ # libCEC target
+-add_library(cec ${CEC_SOURCES})
+-install(TARGETS cec
++add_library(cecobj OBJECT ${CEC_SOURCES})
++set_property(TARGET ${cecobj} PROPERTY POSITION_INDEPENDENT_CODE 1)
++add_library(cec SHARED $<TARGET_OBJECTS:cecobj>)
++add_library(cecstatic STATIC $<TARGET_OBJECTS:cecobj>)
++set_target_properties(cecstatic PROPERTIES OUTPUT_NAME cec)
++install(TARGETS cec cecstatic
+         DESTINATION ${LIB_DESTINATION})
+-set_target_properties(cec PROPERTIES VERSION   ${LIBCEC_VERSION_MAJOR}.${LIBCEC_VERSION_MINOR}.${LIBCEC_VERSION_PATCH}
++set_target_properties(cec cecstatic PROPERTIES VERSION   ${LIBCEC_VERSION_MAJOR}.${LIBCEC_VERSION_MINOR}.${LIBCEC_VERSION_PATCH}
+                                      SOVERSION ${LIBCEC_VERSION_MAJOR}.0)
+-target_link_libraries(cec ${platform_LIBRARIES})
+-target_link_libraries(cec ${CMAKE_THREAD_LIBS_INIT})
++target_link_libraries(cec cecstatic ${platform_LIBRARIES})
++target_link_libraries(cec cecstatic ${CMAKE_THREAD_LIBS_INIT})
+ 
+ include(cmake/LinkPlatformSupport.cmake)
+ include(cmake/DisplayPlatformSupport.cmake)

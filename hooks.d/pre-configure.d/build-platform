@@ -1,0 +1,24 @@
+
+case $config_platform_branch in
+    *-cec3)
+        ;;
+    *)
+        return
+        ;;
+esac
+
+cd $config_platform_install
+
+[ -d build ] || mkdir build
+cd build
+[ -e CMakeCache.txt ] && rm -f CMakeCache.txt || :
+[ -e Makefile ] && make clean || :
+
+echo Building platform for libcec use
+$config_build_env cmake -DCMAKE_INSTALL_PREFIX=$(readlink -f ../) ..
+$config_build_env make install
+
+echo Building platform again for deb Package
+[ -e CMakeCache.txt ] && rm -f CMakeCache.txt || :
+$config_build_env cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+$config_build_env make

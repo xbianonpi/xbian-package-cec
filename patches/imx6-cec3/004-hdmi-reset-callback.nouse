@@ -1,0 +1,32 @@
+--- IMXCECAdapterCommunication.cpp	2014-07-01 05:11:27.091024550 +0200
++++ IMXCECAdapterCommunication.cpp.new	2014-06-19 17:55:57.000000000 +0200
+@@ -101,7 +101,7 @@
+   if (m_bInitialised)
+   {
+     m_bInitialised = false;
+-    dummyMsg();
++    dummyMsg((cec_opcode)0xFD);
+ 
+     if (m_dev->Ioctl(HDMICEC_IOC_STOPDEVICE, NULL) != 0)
+     {
+@@ -340,6 +340,7 @@
+         else if (event.event_type == MESSAGE_TYPE_CONNECTED)
+         {
+             /* HDMI Hotplug event - connect */
++            cec_command cmd;
+             uint16_t oldAddress = m_physicalAddress;
+ 
+             if (oldAddress != GetPhysicalAddress())
+@@ -347,6 +348,12 @@
+ #ifdef CEC_DEBUGGING
+             LIB_CEC->AddLog(CEC_LOG_DEBUG, "%s: plugin event received", __func__);
+ #endif
++
++            cec_command::Format(cmd, CECDEVICE_BROADCAST, CECDEVICE_BROADCAST, (cec_opcode)0x100);
++
++            if (!IsStopped()) {
++              m_callback->OnCommandReceived(cmd);
++            }
+         }
+         else
+             LIB_CEC->AddLog(CEC_LOG_WARNING, "%s: unhandled response received %d!", __func__, event.event_type);
