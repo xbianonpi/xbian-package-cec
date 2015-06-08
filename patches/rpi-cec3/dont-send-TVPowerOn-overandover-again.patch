@@ -1,0 +1,13 @@
+diff --git a/src/libcec/devices/CECBusDevice.cpp b/src/lib/devices/CECBusDevice.cpp
+index 489ded2..d1be331 100644
+--- a/src/libcec/devices/CECBusDevice.cpp
++++ b/src/libcec/devices/CECBusDevice.cpp
+@@ -1265,7 +1265,7 @@ bool CCECBusDevice::PowerOn(const cec_logical_address initiator)
+ 
+   MarkBusy();
+   cec_power_status currentStatus;
+-  if (m_iLogicalAddress == CECDEVICE_TV ||
++  if ((m_iLogicalAddress == CECDEVICE_TV && !m_bImageViewOnSent) ||
+       ((currentStatus = GetPowerStatus(initiator, false)) != CEC_POWER_STATUS_IN_TRANSITION_STANDBY_TO_ON &&
+         currentStatus != CEC_POWER_STATUS_ON))
+   {

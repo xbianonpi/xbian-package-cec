@@ -1,0 +1,13 @@
+diff --git a/src/libcec/adapter/RPi/RPiCECAdapterMessageQueue.cpp b/src/libcec/adapter/RPi/RPiCECAdapterMessageQueue.cpp
+index 361ba38..ce8f008 100644
+--- a/src/libcec/adapter/RPi/RPiCECAdapterMessageQueue.cpp
++++ b/src/libcec/adapter/RPi/RPiCECAdapterMessageQueue.cpp
+@@ -217,7 +217,7 @@ cec_adapter_message_state CRPiCECAdapterMessageQueue::Write(const cec_command &c
+       {
+         bRetry = true;
+         LIB_CEC->AddLog(CEC_LOG_DEBUG, "command '%s' timeout", command.opcode_set ? CCECTypeUtils::ToString(command.opcode) : "POLL");
+-        sleep(CEC_DEFAULT_TRANSMIT_RETRY_WAIT);
++        CEvent::Sleep(CEC_DEFAULT_TRANSMIT_RETRY_WAIT);
+       }
+       bReturn = ADAPTER_MESSAGE_STATE_WAITING_TO_BE_SENT;
+     }

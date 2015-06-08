@@ -1,0 +1,20 @@
+--- a/src/libcec/cmake/CheckPlatformSupport.cmake
++++ b/src/libcec/cmake/CheckPlatformSupport.cmake
+@@ -63,17 +63,6 @@ else()
+     set(HAVE_P8_USB_DETECT 1)
+   endif()
+ 
+-  # xrandr
+-  check_include_files("X11/Xlib.h;X11/Xatom.h;X11/extensions/Xrandr.h" HAVE_RANDR_HEADERS)
+-  check_library_exists(Xrandr XRRGetScreenResources "" HAVE_RANDR_LIB)
+-  if (HAVE_RANDR_HEADERS AND HAVE_RANDR_LIB)
+-    set(LIB_INFO "${LIB_INFO}, randr")
+-    list(APPEND CEC_SOURCES_PLATFORM platform/X11/randr-edid.cpp)
+-    set(HAVE_RANDR 1)
+-  else()
+-    set(HAVE_RANDR 0)
+-  endif()
+-
+   # raspberry pi
+   find_library(BCM_HOST bcm_host)
+   check_library_exists(${BCM_HOST} bcm_host_init "" HAVE_RPI_API)

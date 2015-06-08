@@ -1,0 +1,11 @@
+Origin: XBian
+Package: __PKGNAME__
+Version: __VERSION__
+Section: utils
+Priority: optional
+Architecture: armhf
+Depends: liblockdev1, libudev0 | libudev1, udev, liblockdev1, makedev
+Provides: libcec-dev, libplatform-dev, xbian-package-cec-6q, xbian-package-cec
+Conflicts: libcec-dev, libplatform-dev, xbian-package-cec-6q, xbian-package-cec
+Description: libcec 3.0.0 for XBian (__ARCHBRANCH__)
+Maintainer: mk01 <development@xbian.org>
