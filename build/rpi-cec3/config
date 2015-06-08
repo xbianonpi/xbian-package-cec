@@ -11,5 +11,6 @@ config_source_prepare=[ -e CMakeCache.txt ] && rm -f CMakeCache.txt && make clea
 config_source_configure=cmake -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DCMAKE_LIBRARY_PATH=/opt/vc/lib -DCMAKE_INSTALL_PREFIX=/usr
 config_build_env=schroot -c armhfwheezy -p --
 config_deb_pkgname=libcec3
+config_deb_version=3.0.0-2
 config_deb_contentclean=yes
 config_wrapper=build.package
