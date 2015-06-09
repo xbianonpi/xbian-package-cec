@@ -7,9 +7,10 @@ config_source_refresh=yes
 config_platform_source_addr=https://github.com/Pulse-Eight/platform
 config_platform_install=platform
 config_source_prepare=[ -e CMakeCache.txt ] && rm -f CMakeCache.txt && make clean || : 
-#config_source_configure=cmake -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DHAVE_IMX_API=1 -DCMAKE_LIBRARY_PATH=/opt/vc/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
-config_source_configure=cmake -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DHAVE_IMX_API=1 -DCMAKE_LIBRARY_PATH=/opt/vc/lib -DCMAKE_INSTALL_PREFIX=/usr
+config_source_configure=cmake -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DCMAKE_INSTALL_PREFIX=/usr
 config_build_env=schroot -c armhfjessie -p --
 config_deb_pkgname=libcec3
 config_deb_contentclean=yes
 config_wrapper=build.package
+config_deb_pkgcreatenative=yes
+config_install_targets=
