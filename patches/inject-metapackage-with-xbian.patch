@@ -1,0 +1,13 @@
+diff --git a/debian/control b/debian/control
+index ee8690e..a243f87 100644
+--- a/debian/control
++++ b/debian/control
+@@ -64,6 +64,6 @@ Description: Python bindings for libCEC
+ 
+ Package: libcec
+ Architecture: any
+-Depends: ${shlibs:Depends}, ${misc:Depends}, libcec3 (= ${binary:Version})
++Depends: ${shlibs:Depends}, ${misc:Depends}, libcec3 (= ${binary:Version}), python-libcec, cec-utils, libcec-dev
++Provides: xbian-package-cec
+ Description: Meta package libCEC.
+ 
