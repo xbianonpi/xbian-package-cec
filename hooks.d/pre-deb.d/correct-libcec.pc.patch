@@ -3,4 +3,9 @@
 [ -e ./usr/lib/pkgconfig/libcec.pc ] && sed -i 's/usr\/\/usr/usr/g' ./usr/lib/pkgconfig/libcec.pc || :
 
 # Correct libcec.pc if libplatform is not included
-[ -e ./usr/lib/pkgconfig/platform.pc ] || [ -e ./usr/lib/pkgconfig/libcec.pc ] && sed -i 's/platform//g' ./usr/lib/pkgconfig/libcec.pc || :
+if [ "$config_deb_pkgcreatenative" = yes ]; then
+    sed -i 's/platform//g' ./src/libcec/libcec.pc
+else
+    [ -e ./usr/lib/pkgconfig/platform.pc ] || [ -e ./usr/lib/pkgconfig/libcec.pc ] && sed -i 's/platform//g' ./usr/lib/pkgconfig/libcec.pc || :
+fi
+

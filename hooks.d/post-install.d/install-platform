@@ -7,6 +7,8 @@ case $config_platform_branch in
     ;;
 esac
 
-cd $config_platform_install/build
-echo "Installing platform package"
-$config_build_env make install
+if [ ! $config_deb_pkgcreatenative = yes ]; then
+    cd $config_platform_install/build
+    echo "Installing platform package"
+    $config_build_env make install
+fi
