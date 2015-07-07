@@ -1,0 +1,58 @@
+commit 5658f756cc865798da15a58dab9bd8f5f41e8248
+Author: Matus Kral <matuskral@me.com>
+Date:   Thu Mar 19 17:50:03 2015 +0100
+
+    IMX6: allowing infinite timeout on read from dev file.
+    
+            SocketRead() was changed to polling (instead of select()).
+    In order for this to work, kernel driver must be returning POLLHUP
+    to interrupt waiting SocketRead(). Otherwise infinite timeout will
+    block CEC adapter termination.
+
+diff --git a/platform/src/posix/os-socket.h b/platform/src/posix/os-socket.h
+index 05888c2..d77e17d 100644
+--- a/platform/src/posix/os-socket.h
++++ b/platform/src/posix/os-socket.h
+@@ -113,8 +113,7 @@ namespace PLATFORM
+ 
+   inline ssize_t SocketRead(socket_t socket, int *iError, void* data, size_t len, uint64_t iTimeoutMs /*= 0*/)
+   {
+-    fd_set port;
+-    struct timeval timeout, *tv;
++    struct pollfd fds;
+     ssize_t iBytesRead(0);
+     *iError = 0;
+     CTimeout readTimeout(iTimeoutMs);
+@@ -127,28 +126,16 @@ namespace PLATFORM
+ 
+     while (iBytesRead >= 0 && iBytesRead < (ssize_t)len && (iTimeoutMs == 0 || readTimeout.TimeLeft() > 0))
+     {
+-      if (iTimeoutMs == 0)
+-      {
+-        tv = NULL;
+-      }
+-      else
+-      {
+-        long iTimeLeft = (long)readTimeout.TimeLeft();
+-        timeout.tv_sec  = iTimeLeft / (long int)1000.;
+-        timeout.tv_usec = iTimeLeft % (long int)1000.;
+-        tv = &timeout;
+-      }
+-
+-      FD_ZERO(&port);
+-      FD_SET(socket, &port);
+-      int32_t returnv = select(socket + 1, &port, NULL, NULL, tv);
++      fds.fd = (int)socket;
++      fds.events = POLLIN | POLLHUP;
++      ssize_t returnv = (ssize_t)poll(&fds, 1, iTimeoutMs ? iTimeoutMs : -1);
+ 
+       if (returnv == -1)
+       {
+         *iError = errno;
+         return -errno;
+       }
+-      else if (returnv == 0)
++      else if (returnv == 0 || fds.revents & POLLHUP)
+       {
+         break; //nothing to read
+       }

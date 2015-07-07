@@ -1,13 +1,38 @@
 diff --git a/debian/control b/debian/control
-index ee8690e..f7e5f92 100644
+index ee8690e..40cd26a 100644
 --- a/debian/control
 +++ b/debian/control
-@@ -64,6 +64,7 @@ Description: Python bindings for libCEC
+@@ -44,6 +44,7 @@ Description: libCEC communication Library (shared library)
+ Package: cec-utils
+ Architecture: any
+ Section: utils
++Replaces: xbian-package-cec
+ Depends: libcec3 (= ${binary:Version}),
+          ${shlibs:Depends},
+          ${misc:Depends}
+@@ -64,6 +65,8 @@ Description: Python bindings for libCEC
  
  Package: libcec
  Architecture: any
 -Depends: ${shlibs:Depends}, ${misc:Depends}, libcec3 (= ${binary:Version})
 +Depends: ${shlibs:Depends}, ${misc:Depends}, libcec3 (= ${binary:Version}), python-libcec, cec-utils, libcec-dev
 +Provides: xbian-package-cec
++Breaks: xbian-package-cec (<<10.0)
  Description: Meta package libCEC.
  
+diff --git a/debian/libcec-dev.install b/debian/libcec-dev.install
+index e5bbd96..1b0451c 100644
+--- a/debian/libcec-dev.install
++++ b/debian/libcec-dev.install
+@@ -1,3 +1,4 @@
+ usr/include
+ usr/lib/pkgconfig
+ usr/lib/*/*.so
++usr/lib/*/*.cmake
+diff --git a/debian/libcec3.install b/debian/libcec3.install
+index ca5ebe3..35be319 100644
+--- a/debian/libcec3.install
++++ b/debian/libcec3.install
+@@ -1 +1,2 @@
+ usr/lib/*/libcec.so.*
++usr/lib/*/*.a
