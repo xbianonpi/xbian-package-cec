@@ -15,4 +15,7 @@ if [ ! $config_deb_pkgcreatenative = yes ]; then
     rm -fr $(readlink -f $XBIANARCHDIR/working/debian/tmp)
     mkdir -p $(readlink -f $XBIANARCHDIR/working/debian/tmp)
     mv $DESTDIR/usr $(readlink -f $XBIANARCHDIR/working/debian/tmp)
+
+    grep -q 'usr\/lib\/\*/\*\.cmake' $XBIANARCHDIR/working/debian/*.install || echo usr\/lib\/\*/\*\.cmake >> $XBIANARCHDIR/working/debian/libcec-dev.install
+    grep -q 'usr\/lib\/\*\/\*\.a' $XBIANARCHDIR/working/debian/*.install || echo usr\/lib\/\*\/\*\.a >> $XBIANARCHDIR/working/debian/libcec-dev.install
 fi
