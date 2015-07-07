@@ -1,0 +1,4 @@
+
+( cd "$XBIANARCHDIR/working"; \
+    cat debian/changelog.in | sed 's/#DIST#/xbian/g' > debian/changelog; )
+
