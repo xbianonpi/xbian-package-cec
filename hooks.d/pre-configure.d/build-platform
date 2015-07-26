@@ -17,8 +17,7 @@ cd build
 [ -e CMakeCache.txt ] && rm -f CMakeCache.txt || :
 [ -e Makefile ] && make clean || :
 
-echo Building platform for libcec use and deb Package
+echo Building platform for libcec usage
 [ -e CMakeCache.txt ] && rm -f CMakeCache.txt || :
-$config_build_env cmake -DBUILD_SHARED_LIBS=1 -DCMAKE_INSTALL_PREFIX=/usr ..
-export DESTDIR=$(readlink -f ../)
+$config_build_env cmake -DCMAKE_INSTALL_PREFIX=$(readlink -f ../)/usr ..
 $config_build_env make install
