@@ -1,4 +1,6 @@
-#rpi stable rpi-wheezy
-#imx6 stable imx6-jessie
-rpi staging rpi-wheezy
-imx6 staging imx6-jessie
+#rpi-cec3 stable rpi-jessie
+#rpi2-cec3 stable rpi2-jessie
+#imx6-cec3 stable imx6-jessie
+rpi-cec3 staging rpi-jessie
+rpi2-cec3 staging rpi2-jessie
+imx6-cec3 staging imx6-jessie
