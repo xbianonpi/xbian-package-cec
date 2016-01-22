@@ -1,2 +1,4 @@
-rpi stable rpi-wheezy
-imx6 stable imx6-jessie
+#rpi stable rpi-wheezy
+#imx6 stable imx6-jessie
+rpi staging rpi-wheezy
+imx6 staging imx6-jessie
