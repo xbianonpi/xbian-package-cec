@@ -22,6 +22,7 @@ echo Building platform for libcec usage
 $config_build_env cmake -DCMAKE_INSTALL_PREFIX=$(readlink -f ../)/usr ..
 $config_build_env make install
 
+export DESTDIR=$(readlink -f ../)
 cp $DESTDIR/usr/lib/p8-platform/p8-platform-config.cmake $DESTDIR
 sed -i "s%-L/usr/lib/arm-linux-gnueabihf%-L$XBIANARCHDIR/working/$config_platform_install/usr/lib/arm-linux-gnueabihf%g" $DESTDIR/p8-platform-config.cmake
 
