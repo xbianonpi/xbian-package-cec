@@ -1,0 +1,2 @@
+
+[ -e $XBIANARCHDIR/working/include/p8-platform ] || ln -s $(readlink -f $XBIANARCHDIR/working/platform/usr/include/p8-platform) $XBIANARCHDIR/working/include/p8-platform ||:
