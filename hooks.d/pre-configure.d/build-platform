@@ -1,9 +1,9 @@
 
 case $config_platform_branch in
-    *-cec3)
+    *-cec3|*-cec4)
         ;;
     *)
-        return
+        exit
         ;;
 esac
 
