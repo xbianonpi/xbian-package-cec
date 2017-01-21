@@ -1,7 +1,7 @@
-rpi-cec3  staging rpi-jessie
-rpi2-cec3 staging rpi2-jessie
-imx6-cec3 staging imx6-jessie
+rpi-cec3  stable rpi-jessie
+rpi2-cec3 stable rpi2-jessie
+imx6-cec3 stable imx6-jessie
 
-rpi-cec4  devel rpi-jessie
-rpi2-cec4 devel rpi2-jessie
-imx6-cec4 devel imx6-jessie
+rpi-cec4  staging rpi-jessie
+rpi2-cec4 staging rpi2-jessie
+imx6-cec4 staging imx6-jessie
