@@ -19,8 +19,8 @@ cd build
 
 echo Building platform for libcec usage
 [ -e CMakeCache.txt ] && rm -f CMakeCache.txt || :
-$config_build_env cmake -DCMAKE_INSTALL_PREFIX=$(readlink -f ../)/usr ..
-$config_build_env make install
+eval $config_build_env cmake -DCMAKE_INSTALL_PREFIX=$(readlink -f ../)/usr ..
+eval $config_build_env make install
 
 export DESTDIR=$(readlink -f ../)
 cp $DESTDIR/usr/lib/p8-platform/p8-platform-config.cmake $DESTDIR
