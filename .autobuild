@@ -2,6 +2,6 @@ rpi-cec3  stable rpi-jessie
 rpi2-cec3 stable rpi2-jessie
 imx6-cec3 stable imx6-jessie
 
-rpi-cec4  staging rpi-jessie
-rpi2-cec4 staging rpi2-jessie
-imx6-cec4 staging imx6-jessie
+rpi-cec4  staging rpi-${config_os_version}
+rpi2-cec4 staging rpi2-${config_os_version}
+imx6-cec4 staging imx6-${config_os_version}
