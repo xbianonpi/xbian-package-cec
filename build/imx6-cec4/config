@@ -7,8 +7,8 @@ config_source_refresh=yes
 config_platform_source_addr=https://github.com/Pulse-Eight/platform
 config_platform_install=platform
 config_source_prepare=[ -e CMakeCache.txt ] && rm -f CMakeCache.txt && make clean || : 
-config_source_configure=cmake -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DHAVE_IMX_API=1 -DCMAKE_INSTALL_PREFIX=/usr
-config_build_env=schroot -c armhf${config_os_version} -p --
+config_source_configure=cmake -DCMAKE_INCLUDE_PATH=$(readlink -m ./include) -DCMAKE_PREFIX_PATH=$PWD/$config_platform_install -DHAVE_IMX_API=1 -DCMAKE_INSTALL_PREFIX=/usr
+config_build_env=schroot -c armhfjessie -p --
 config_deb_contentclean=yes
 config_deb_pkgcreatenative=yes
 config_install_targets=

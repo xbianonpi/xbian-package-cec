@@ -1,0 +1,1 @@
+LDFLAGS=-L$(readlink -m ./$config_platform_install/usr/lib/)
