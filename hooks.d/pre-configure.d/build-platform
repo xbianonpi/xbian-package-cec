@@ -1,6 +1,6 @@
 
 case $config_platform_branch in
-    *-cec3|*-cec4)
+    *-cec3|*-cec4|*-cec5|*-cec6)
         ;;
     *)
         exit
