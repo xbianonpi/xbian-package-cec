@@ -1,0 +1,47 @@
+--- libcec-master/src/libcec/CECClient.cpp	2018-03-02 13:47:13.948464097 -0500
++++ libcec-fixed/src/libcec/CECClient.cpp	2018-03-02 13:51:30.416351490 -0500
+@@ -60,8 +60,11 @@
+     m_releaseButtontime(0),
+     m_pressedButtoncount(0),
+     m_releasedButtoncount(0),
+-    m_iPreventForwardingPowerOffCommand(0)
++    m_iPreventForwardingPowerOffCommand(0),
++    m_iLastKeypressTime(0)
+ {
++  m_lastKeypress.keycode = CEC_USER_CONTROL_CODE_UNKNOWN;
++  m_lastKeypress.duration = 0;
+   m_configuration.Clear();
+   // set the initial configuration
+   SetConfiguration(configuration);
+@@ -1650,7 +1653,20 @@
+ {
+   CLockObject lock(m_cbMutex);
+   if (m_configuration.callbacks && !!m_configuration.callbacks->keyPress)
++  {
++    // prevent double taps
++    int64_t now = GetTimeMs();
++    if (m_lastKeypress.keycode != key.keycode ||
++        key.duration > 0 ||
++        now - m_iLastKeypressTime >= DoubleTapTimeoutMS())
++    {
++      // no double tap
++      if (key.duration == 0)
++        m_iLastKeypressTime = now;
++      m_lastKeypress = key;
+       m_configuration.callbacks->keyPress(m_configuration.callbackParam, &key);
++    }
++  }
+ }
+ 
+ void CCECClient::CallbackAddLog(const cec_log_message_cpp &message)
+--- libcec-master/src/libcec/CECClient.h      2018-03-02 13:47:13.948464097 -0500
++++ libcec-fixed/src/libcec/CECClient.h       2018-03-02 13:50:28.639232130 -0500
+@@ -459,6 +459,8 @@
+     int32_t                                  m_pressedButtoncount;                /**< the number of times a button released message has been seen for this press. */
+     int32_t                                  m_releasedButtoncount;               /**< the number of times a button pressed message has been seen for this press. */
+     int64_t                                  m_iPreventForwardingPowerOffCommand; /**< prevent forwarding standby commands until this time */
++    int64_t               m_iLastKeypressTime;                 /**< last time a key press was sent to the client */
++    cec_keypress          m_lastKeypress;                      /**< the last key press that was sent to the client */
+     P8PLATFORM::SyncedBuffer<CCallbackWrap*> m_callbackCalls;
+   };
+ }
